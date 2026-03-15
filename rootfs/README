@@ -1,0 +1,31 @@
+This is a minimal Linux distribution running entirely in your browser,
+powered by the v86 x86 emulator and a custom-built minimal kernel + BusyBox userspace
+
+Getting started
+---------------
+You are in an interactive shell. Try these commands:
+
+  uname -a               - show kernel version and architecture
+  ls /                   - list the root filesystem
+  cat /proc/cpuinfo      - show CPU information
+  cat /proc/meminfo      - show memory information
+  cat /proc/interrupts   - live interrupt counters
+  cat /proc/net/dev      - network interface stats
+  free -h                - show memory usage
+  df -h                  - show filesystem disk usage
+  ps                     - list running processes
+  top                    - interactive process viewer
+  dmesg                  - show kernel messages
+
+Keyboard shortcuts
+------------------
+  Ctrl+C  - interrupt the current process (SIGINT)
+  Ctrl+D  - send end-of-file / exit the shell
+
+Notes
+-----
+- There is no persistent storage; changes are lost on page reload.
+- Network is not available.
+- The filesystem lives in an initramfs (RAM disk).
+
+Source code: https://github.com/mauri870/tiny-linux
