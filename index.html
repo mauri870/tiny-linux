@@ -168,6 +168,11 @@ html, body {
 
 window.onload = function()
 {
+    if (!confirm("This page needs to download several megabytes of data to run. Do you want to continue?")) {
+        document.body.innerHTML = "<p style='color:white;font-family:monospace;padding:20px'>Aborted.</p>";
+        return;
+    }
+
     var term = new Terminal({
         scrollback: 5000,
         fontSize: 14,

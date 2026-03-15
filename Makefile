@@ -8,8 +8,8 @@ pre:
 
 deps: pre
 	# x86 emulator
-	wget -O build/libv86.js https://cdn.jsdelivr.net/npm/v86@$(V86_VERSION)/build/libv86-debug.js
-	wget -O build/v86.wasm https://cdn.jsdelivr.net/npm/v86@$(V86_VERSION)/build/v86-debug.wasm
+	wget -O build/libv86.js https://cdn.jsdelivr.net/npm/v86@$(V86_VERSION)/build/libv86.js
+	wget -O build/v86.wasm https://cdn.jsdelivr.net/npm/v86@$(V86_VERSION)/build/v86.wasm
 
 	# xterm
 	wget -O build/xterm.js https://cdnjs.cloudflare.com/ajax/libs/xterm/$(XTERMJS_VERSION)/xterm.js
