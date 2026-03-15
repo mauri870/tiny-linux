@@ -1,11 +1,14 @@
-#!/sh
+#!/busybox sh
 
-/busybox --install -s .
+/busybox mkdir -p /bin
+/busybox cp /busybox /bin/busybox
+/bin/busybox --install -s /bin
+export PATH=/bin
 
-/mkdir -p /proc /sys /dev
-/mount -t proc proc /proc
-/mount -t sysfs sysfs /sys
-/mount -t tmpfs tmpfs /dev
+mkdir -p /proc /sys /dev
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t tmpfs tmpfs /dev
 
 echo
 echo
@@ -16,4 +19,4 @@ echo
 
 echo 4 > /proc/sys/kernel/printk
 
-exec /sh
+exec sh
