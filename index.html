@@ -161,8 +161,8 @@ html, body {
 }
 </style>
 
-<script src="build/libv86.js"></script>
-<script src="build/xterm.js"></script>
+<script src="libv86.js"></script>
+<script src="xterm.js"></script>
 <script>
 "use strict";
 
@@ -189,20 +189,20 @@ window.onload = function()
     term.open(document.getElementById("terminal"));
 
     var emulator = window.emulator = new V86({
-        wasm_path: "build/v86.wasm",
+        wasm_path: "v86.wasm",
         memory_size: 128 * 1024 * 1024,
         vga_memory_size: 8 * 1024 * 1024,
         bios: {
-            url: "bios/seabios.bin",
+            url: "seabios.bin",
         },
         vga_bios: {
-            url: "bios/vgabios.bin",
+            url: "vgabios.bin",
         },
         bzimage: {
-            url: "distro/bzImage",
+            url: "bzImage",
         },
         initrd: {
-            url: "distro/init.cpio",
+            url: "init.cpio",
         },
         cmdline: "mitigations=off console=ttyS0 init=/init",
         autostart: true,
