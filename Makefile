@@ -30,7 +30,6 @@ build-busybox: pre
 
 initramfs: pre
 	cp -r rootfs/. build/initramfs/
-	chmod +x build/initramfs/init
 	cd build/initramfs && ln -f busybox sh
 	cd build/initramfs && find . | cpio -H newc -o > ../init.cpio
 	rm -rf build/initramfs
