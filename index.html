@@ -10,19 +10,20 @@ window.onload = function()
 {
     var emulator = window.emulator = new V86({
         wasm_path: "build/v86.wasm",
-        memory_size: 512 * 1024 * 1024,
+        memory_size: 128 * 1024 * 1024,
         vga_memory_size: 8 * 1024 * 1024,
         screen_container: document.getElementById("screen_container"),
-        bzimage_initrd_from_filesystem: true,
         bios: {
             url: "bios/seabios.bin",
         },
         vga_bios: {
             url: "bios/vgabios.bin",
         },
-        hda: {
-            url: "disk.img",
+        bzimage: {
+            url: "distro/bzImage",
         },
+        cmdline: "console=ttyS0 mitigations=off",
+        autostart: true,
     });
 }
 </script>
