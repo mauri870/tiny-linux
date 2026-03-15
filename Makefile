@@ -31,6 +31,12 @@ build-busybox: pre
 	cd busybox && make -j $(nproc) && cp busybox ../distro/busybox
 	mkdir -p distro/fs
 
+initramfs:
+	mkdir -p distro/fs
+	cp distro/busybox distro/fs/busybox
+	cd distro/fs && ln -f busybox sh
+	cd distro/fs && find . | cpio -H newc -o > ../init.cpio
+
 clean:
 	rm -rf build
 
