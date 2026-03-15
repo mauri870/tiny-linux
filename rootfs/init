@@ -1,0 +1,19 @@
+#!/sh
+
+/busybox --install -s .
+
+/mkdir -p /proc /sys /dev
+/mount -t proc proc /proc
+/mount -t sysfs sysfs /sys
+/mount -t tmpfs tmpfs /dev
+
+echo
+echo
+printf "\033[1;34mWelcome to Mauri870's Linux Emulator! Have fun exploring Linux in your browser :)\033[0m\n"
+printf "\033[1;32m$(/uname -a)\033[0m\n"
+echo
+echo
+
+echo 4 > /proc/sys/kernel/printk
+
+exec /sh

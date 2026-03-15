@@ -2,9 +2,7 @@ V86_VERSION = 0.5.44
 XTERMJS_VERSION = 5.5.0
 
 pre:
-	mkdir -p build
-	mkdir -p distro
-	mkdir -p distro/fs
+	mkdir -p build build/initramfs
 
 deps: pre
 	# x86 emulator
@@ -28,14 +26,14 @@ build-linux: pre
 build-busybox: pre
 	cp busybox.config busybox/.config
 	cd busybox && patch -p1 < ../patches/busybox/*.patch || true
-	cd busybox && make -j $(nproc) && cp busybox ../distro/busybox
-	mkdir -p distro/fs
+	cd busybox && make -j $(nproc) && cp busybox ../build/initramfs/busybox
 
-initramfs:
-	mkdir -p distro/fs build
-	cp distro/busybox distro/fs/busybox
-	cd distro/fs && ln -f busybox sh
-	cd distro/fs && find . | cpio -H newc -o | lzma > ../../build/init.cpio
+initramfs: pre
+	cp -r rootfs/. build/initramfs/
+	chmod +x build/initramfs/init
+	cd build/initramfs && ln -f busybox sh
+	cd build/initramfs && find . | cpio -H newc -o > ../init.cpio
+	rm -rf build/initramfs
 
 clean:
 	rm -rf build
