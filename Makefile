@@ -21,7 +21,13 @@ build-busybox: pre
 initramfs: pre
 	cp -r rootfs/. build/initramfs/
 	cd build/initramfs && ln -f busybox sh
-	cd build/initramfs && find . | cpio -H newc -o > ../init.cpio
+	cd build/initramfs && find . | cpio -H newc -o | lzma > ../init.cpio.lzma
+
+qemu:
+	qemu-system-x86_64 -kernel build/bzImage -initrd build/init.cpio.lzma
+
+devenv:
+	docker run -it -w /var/build -v $(pwd):/var/build ubuntu:24.04 bash
 
 clean:
 	rm -rf build
