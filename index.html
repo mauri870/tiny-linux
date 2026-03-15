@@ -182,6 +182,7 @@ window.onload = function()
     });
 
     term.open(document.getElementById("terminal"));
+    term.focus();
 
     var emulator = window.emulator = new V86({
         wasm_path: "https://cdn.jsdelivr.net/npm/v86@0.5.319/build/v86.wasm",
