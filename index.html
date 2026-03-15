@@ -161,8 +161,8 @@ html, body {
 }
 </style>
 
-<script src="libv86.js"></script>
-<script src="xterm.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/v86@0.5.319/build/libv86.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
 <script>
 "use strict";
 
@@ -189,7 +189,7 @@ window.onload = function()
     term.open(document.getElementById("terminal"));
 
     var emulator = window.emulator = new V86({
-        wasm_path: "v86.wasm",
+        wasm_path: "https://cdn.jsdelivr.net/npm/v86@0.5.319/build/v86.wasm",
         memory_size: 128 * 1024 * 1024,
         vga_memory_size: 8 * 1024 * 1024,
         bios: {
