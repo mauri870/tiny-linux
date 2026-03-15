@@ -27,7 +27,7 @@ qemu:
 	qemu-system-x86_64 -kernel build/bzImage -initrd build/init.cpio.lzma
 
 devenv:
-	docker run -it -w /var/build -v $(pwd):/var/build ubuntu:24.04 bash
+	docker run -it -w /var/build -v "$(PWD):/var/build" ubuntu:24.04 bash
 
 clean:
 	rm -rf build
