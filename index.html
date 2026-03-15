@@ -1,6 +1,22 @@
 <!doctype html>
 <title>Mauri870's Linux</title>
 
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    width: 100%;
+    height: 100%;
+}
+
+#screen_container {
+    width: 100vw;
+    height: 100vh;
+    background: black;
+}
+</style>
+
 <script src="build/libv86.js"></script>
 <script src="build/xterm.js" async=""></script>
 <script>
@@ -25,14 +41,13 @@ window.onload = function()
         initrd: {
             url: "distro/init.cpio",
         },
-        cmdline: "console=tty0 earlycon=tty0 loglevel=7 mitigations=off earlyprintk=serial",
+        cmdline: "mitigations=off init=/sh",
         autostart: true,
     });
 }
 </script>
 
-<!-- A minimal structure for the ScreenAdapter defined in browser/screen.js -->
 <div id="screen_container">
-    <div style="white-space: pre; font: 14px monospace; line-height: 14px"></div>
-    <canvas style="display: none"></canvas>
+    <div style="white-space: pre; font: 14px monospace; line-height: 18px; color: white;"></div>
+    <canvas></canvas>
 </div>
