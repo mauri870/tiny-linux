@@ -3,6 +3,7 @@ SEABIOS_VERSION = 1.10.0
 
 pre:
 	mkdir -p build
+	mkdir -p distro
 
 deps: pre
 	# x86 emulator
@@ -13,14 +14,20 @@ deps: pre
 	mkdir -p bios
 	curl -L https://www.seabios.org/downloads/bios.bin-$(SEABIOS_VERSION).gz | gzip -d > bios/seabios.bin
 
-build: build-linux
+build: build-linux build-busybox
 
 build-linux: pre
-	cp .config linux
-	cd linux && make -j $(nproc) && cp arch/x86/boot/bzImage ../build/bzImage
+	cp linux.config linux/.config
+	cd linux && make -j $(nproc) && cp arch/x86/boot/bzImage ../distro/bzImage
+
+build-busybox: pre
+	cp busybox.config busybox/.config
+	cd busybox && patch -p1 < ../patches/busybox/*.patch || true
+	cd busybox && make -j $(nproc) && cp busybox ../distro/busybox
+
 
 clean:
-	rm -rf build
+	rm -rf build distro
 
 serve:
 	python3 -m http.server
