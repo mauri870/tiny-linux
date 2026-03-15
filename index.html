@@ -22,7 +22,10 @@ window.onload = function()
         bzimage: {
             url: "distro/bzImage",
         },
-        cmdline: "console=ttyS0 mitigations=off",
+        initrd: {
+            url: "distro/init.cpio",
+        },
+        cmdline: "console=tty0 earlycon=tty0 loglevel=7 mitigations=off earlyprintk=serial",
         autostart: true,
     });
 }

@@ -1,6 +1,4 @@
 V86_VERSION = 0.5.44
-SEABIOS_VERSION = 1.10.0
-VGABIOS_VERSION = 0.4c
 XTERMJS_VERSION = 5.5.0
 
 pre:
@@ -10,16 +8,16 @@ pre:
 
 deps: pre
 	# x86 emulator
-	wget -O build/libv86.js https://cdn.jsdelivr.net/npm/v86@$(V86_VERSION)/build/libv86.js
-	wget -O build/v86.wasm https://cdn.jsdelivr.net/npm/v86@$(V86_VERSION)/build/v86.wasm
+	wget -O build/libv86.js https://cdn.jsdelivr.net/npm/v86@$(V86_VERSION)/build/libv86-debug.js
+	wget -O build/v86.wasm https://cdn.jsdelivr.net/npm/v86@$(V86_VERSION)/build/v86-debug.wasm
 
 	# xterm
 	wget -O build/xterm.js https://cdnjs.cloudflare.com/ajax/libs/xterm/$(XTERMJS_VERSION)/xterm.js
 
 	# bios
 	mkdir -p bios
-	curl -L https://www.seabios.org/downloads/bios.bin-$(SEABIOS_VERSION).gz | gzip -d > bios/seabios.bin
-	wget -O bios/vgabios.bin https://download-mirror.savannah.gnu.org/releases/vgabios/vgabios-$(VGABIOS_VERSION).bin
+	wget -O bios/seabios.bin https://github.com/copy/v86/raw/refs/heads/master/bios/seabios.bin
+	wget -O bios/vgabios.bin https://github.com/copy/v86/raw/refs/heads/master/bios/vgabios.bin
 
 build: build-linux build-busybox
 
