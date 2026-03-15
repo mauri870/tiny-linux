@@ -1,5 +1,5 @@
 <!doctype html>
-<title>Mauri870's Linux</title>
+<title>Mauri870's Linux Emu</title>
 
 <style>
 html, body {
@@ -199,7 +199,7 @@ window.onload = function()
         initrd: {
             url: "distro/init.cpio",
         },
-        cmdline: "mitigations=off console=ttyS0 init=/sh",
+        cmdline: "mitigations=off console=ttyS0 init=/init",
         autostart: true,
         disable_keyboard: true,
     });
