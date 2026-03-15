@@ -29,8 +29,8 @@ build-busybox: pre
 	cp busybox.config busybox/.config
 	cd busybox && patch -p1 < ../patches/busybox/*.patch || true
 	cd busybox && make -j $(nproc) && cp busybox ../distro/busybox
-	mkdir -p distro/fs/usr/bin
-	./distro/busybox --install -s distro/fs/usr/bin
+	mkdir -p distro/fs
+	./distro/busybox --install -s distro/fs
 
 clean:
 	rm -rf build
