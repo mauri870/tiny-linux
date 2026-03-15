@@ -1,12 +1,14 @@
-This is the Linux emulator served from linux.mauri870.com.
+# tiny-linux
 
-It is a simple Linux distro built from scratch with busybox and emulated with v86 and xterm.
+This is a **Linux emulator** served from [linux.mauri870.com](https://linux.mauri870.com).
 
-```
+It runs a **minimal Linux distro built from scratch** using **BusyBox**, emulated with **v86** and **xterm**.
+
+## Getting Started
+
+```bash
 git clone --recurse-submodules --shallow-submodules
-```
 
-```
 make devenv
 ./setup.sh
 make build
