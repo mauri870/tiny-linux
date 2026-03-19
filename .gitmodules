@@ -4,3 +4,6 @@
 [submodule "busybox"]
 	path = busybox
 	url = https://github.com/mirror/busybox
+[submodule "strace"]
+	path = strace
+	url = https://github.com/strace/strace.git

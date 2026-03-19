@@ -5,6 +5,8 @@ Getting started
 ---------------
 You are in an interactive shell. Try these commands:
 
+  echo "Hello, world!"   - print a message
+  echo "23*2-4" | bc     - calculate an expression
   uname -a               - show kernel version and architecture
   ls /                   - list the root filesystem
   cat /proc/cpuinfo      - show CPU information
@@ -16,6 +18,7 @@ You are in an interactive shell. Try these commands:
   ps                     - list running processes
   top                    - interactive process viewer
   dmesg                  - show kernel messages
+  strace -c ls /         - show system call counts for 'ls /'
 
 Keyboard shortcuts
 ------------------

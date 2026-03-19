@@ -1,12 +1,12 @@
 pre:
-	mkdir -p build build/initramfs
+	mkdir -p build build/initramfs/bin
 
 deps: pre
 	# bios
 	wget -O build/seabios.bin https://github.com/copy/v86/raw/b8a39b11dd2076870699e6cac053556271b9bfab/bios/seabios.bin
 	wget -O build/vgabios.bin https://github.com/copy/v86/raw/b8a39b11dd2076870699e6cac053556271b9bfab/bios/vgabios.bin
 
-build: deps build-linux build-busybox initramfs
+build: deps build-linux build-busybox build-strace initramfs
 	cp index.html build/index.html
 
 build-linux: pre
@@ -18,9 +18,15 @@ build-busybox: pre
 	cd busybox && patch -p1 < ../patches/busybox/*.patch || true
 	cd busybox && make -j $(nproc) && cp busybox ../build/initramfs/busybox
 
+build-strace: pre
+	cd strace && ./bootstrap
+	cd strace && ./configure --host=i686-linux-gnu --enable-static --disable-shared LDFLAGS="-static" CFLAGS="-m32" CXXFLAGS="-m32"
+	cd strace && make -j $(nproc) && cp src/strace ../build/initramfs/bin/strace
+
 initramfs: pre
 	cp -r rootfs/. build/initramfs/
 	cd build/initramfs && ln -f busybox sh
+	cd build/initramfs && find . -type f -exec file {} + | grep ELF | cut -d: -f1 | xargs strip --strip-debug
 	cd build/initramfs && find . | cpio -H newc -o | lzma > ../init.cpio.lzma
 
 qemu:
