@@ -25,9 +25,11 @@ build-strace: pre
 
 initramfs: clean-initramfs pre
 	cp -r rootfs/. build/initramfs/
-	mkdir -p build/initramfs/bin
+	mkdir -p build/initramfs/bin build/initramfs/sbin build/initramfs/usr/bin build/initramfs/usr/sbin
 	cp busybox/busybox build/initramfs/busybox
+	chroot build/initramfs /busybox --install -s
 	cp strace/src/strace build/initramfs/bin/strace
+	chmod +x build/initramfs/etc/init.d/rcS
 	cd build/initramfs && ln -f busybox sh
 	cd build/initramfs && find . -type f -exec file {} + | grep ELF | cut -d: -f1 | xargs strip --strip-debug
 	cd build/initramfs && find . | cpio -H newc -o | lzma > ../init.cpio.lzma

@@ -1,0 +1,4 @@
+::sysinit:/etc/init.d/rcS
+console::respawn:/bin/sh
+::restart:/sbin/init
+::ctrlaltdel:/sbin/reboot
