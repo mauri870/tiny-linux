@@ -5,10 +5,11 @@
 /bin/busybox --install -s /bin
 export PATH=/bin
 
-mkdir -p /proc /sys /dev
+mkdir -p /proc /sys /dev /tmp
 mount -t proc proc /proc
 mount -t sysfs sysfs /sys
 mount -t devtmpfs devtmpfs /dev
+mount -t tmpfs tmpfs /tmp
 
 echo "tiny" > /proc/sys/kernel/hostname
 
@@ -16,7 +17,7 @@ echo 4 > /proc/sys/kernel/printk
 
 printf "\n"
 printf "\n"
-printf "\033[1;34mWelcome to Mauri870's Linux Emulator!\nHave fun exploring a minimal Linux distro in your browser :)\033[0m\n"
+printf "\033[1;34mWelcome to Mauri870's Linux Playground!\nHave fun exploring a minimal Linux system in your browser :)\033[0m\n"
 printf "\n"
 printf "\033[0;37mType \033[1;36mcat README\033[0;37m to learn more.\033[0m\n"
 printf "\033[0;37mSource code: https://github.com/mauri870/tiny-linux\033[0m\n"

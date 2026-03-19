@@ -1,3 +1,4 @@
+
 This is a minimal Linux distribution running entirely in your browser,
 powered by the v86 x86 emulator and a custom-built minimal kernel + BusyBox userspace
 
@@ -5,20 +6,23 @@ Getting started
 ---------------
 You are in an interactive shell. Try these commands:
 
-  echo "Hello, world!"   - print a message
-  echo "23*2-4" | bc     - calculate an expression
-  uname -a               - show kernel version and architecture
-  ls /                   - list the root filesystem
-  cat /proc/cpuinfo      - show CPU information
-  cat /proc/meminfo      - show memory information
-  cat /proc/interrupts   - live interrupt counters
-  cat /proc/net/dev      - network interface stats
-  free -h                - show memory usage
-  df -h                  - show filesystem disk usage
-  ps                     - list running processes
-  top                    - interactive process viewer
-  dmesg                  - show kernel messages
-  strace -c ls /         - show system call counts for 'ls /'
+  echo "Hello, world!"        - print a message
+  echo "23*2-4" | bc          - calculate an expression
+  echo "foo" > /tmp/test.txt  - write to a file
+  cat /tmp/test.txt           - read the file back
+  history                     - show command history
+  uname -a                    - show kernel version and architecture
+  ls /                        - list the root filesystem
+  cat /proc/cpuinfo           - show CPU information
+  cat /proc/meminfo           - show memory information
+  cat /proc/interrupts        - live interrupt counters
+  cat /proc/net/dev           - network interface stats
+  free -h                     - show memory usage
+  df -h                       - show filesystem disk usage
+  ps                          - list running processes
+  top                         - interactive process viewer
+  dmesg                       - show kernel messages
+  strace -c ls /              - show system call counts for 'ls /'
 
 Keyboard shortcuts
 ------------------
