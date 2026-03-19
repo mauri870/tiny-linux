@@ -10,7 +10,6 @@ It runs a **minimal Linux distro built from scratch** using **BusyBox**, emulate
 git clone --recurse-submodules --shallow-submodules
 
 make devenv
-./setup.sh
 make build
 make serve # to serve the emulator in a browser
 make qemu # to test the bzImage and initramfs
