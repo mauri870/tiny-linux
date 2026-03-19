@@ -25,6 +25,7 @@ build-strace: pre
 
 initramfs: clean-initramfs pre
 	cp -r rootfs/. build/initramfs/
+	mkdir -p build/initramfs/bin
 	cp busybox/busybox build/initramfs/busybox
 	cp strace/src/strace build/initramfs/bin/strace
 	cd build/initramfs && ln -f busybox sh
