@@ -35,8 +35,16 @@ initramfs: clean-initramfs pre
 qemu:
 	qemu-system-x86_64 -kernel build/bzImage -initrd build/init.cpio.lzma
 
+DEVENV_CONTAINER ?= tiny-linux-devenv
+
 devenv:
-	docker run -it -w /var/build -v "$(PWD):/var/build" ubuntu:24.04 bash -c "./setup.sh && bash"
+	@if ! docker ps -a --format '{{.Names}}' | grep -qx '$(DEVENV_CONTAINER)'; then \
+		echo "Creating $(DEVENV_CONTAINER) and running setup..."; \
+		docker run -d --name $(DEVENV_CONTAINER) -w /var/build -v "$(PWD):/var/build" ubuntu:24.04 tail -f /dev/null; \
+		docker exec $(DEVENV_CONTAINER) bash -lc "./setup.sh"; \
+	fi
+	@docker start $(DEVENV_CONTAINER) >/dev/null
+	@docker exec -it $(DEVENV_CONTAINER) bash
 
 clean:
 	rm -rf build
