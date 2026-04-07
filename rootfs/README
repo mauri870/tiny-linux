@@ -22,7 +22,6 @@ You are in an interactive shell. Try these commands:
   ps                          - list running processes
   top                         - interactive process viewer
   dmesg                       - show kernel messages
-  strace -c ls /              - show system call counts for 'ls /'
 
 Keyboard shortcuts
 ------------------
