@@ -11,12 +11,12 @@ build: deps build-linux build-busybox initramfs
 
 build-linux: pre
 	cp linux.config linux/.config
-	cd linux && make -j $(nproc) && cp arch/x86/boot/bzImage ../build/bzImage
+	cd linux && make LLVM=1 -j $(nproc) && cp arch/x86/boot/bzImage ../build/bzImage
 
 build-busybox: pre
 	cp busybox.config busybox/.config
 	cd busybox && patch -p1 < ../patches/busybox/*.patch || true
-	cd busybox && make -j $(nproc)
+	cd busybox && make CC=clang -j $(nproc)
 
 build-strace: pre
 	cd strace && ./bootstrap
