@@ -15,7 +15,7 @@ build-linux: pre
 
 build-busybox: pre
 	cp busybox.config busybox/.config
-	cd busybox && patch -p1 < ../patches/busybox/*.patch || true
+	cd busybox && for p in ../patches/busybox/*.patch; do patch -p1 < "$$p" || true; done
 	cd busybox && make CC=clang -j $(nproc)
 
 build-strace: pre

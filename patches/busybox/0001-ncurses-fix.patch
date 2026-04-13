@@ -1,7 +1,7 @@
-diff --git a/tools/kconfig/lxdialog/check-lxdialog.sh b/tools/kconfig/lxdialog/check-lxdialog.sh
+diff --git a/scripts/kconfig/lxdialog/check-lxdialog.sh b/scripts/kconfig/lxdialog/check-lxdialog.sh
 index e9daa627..6408baae 100755
---- a/tools/kconfig/lxdialog/check-lxdialog.sh
-+++ b/tools/kconfig/lxdialog/check-lxdialog.sh
+--- a/scripts/kconfig/lxdialog/check-lxdialog.sh
++++ b/scripts/kconfig/lxdialog/check-lxdialog.sh
 @@ -63,7 +63,7 @@ trap "rm -f $tmp ${tmp%.tmp}.d" 0 1 2 3 15
  check() {
          $cc -x c - -o $tmp 2>/dev/null <<'EOF'
