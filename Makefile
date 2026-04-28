@@ -16,7 +16,7 @@ build-linux: pre
 
 build-busybox: pre
 	cp busybox.config busybox/.config
-	cd linux && make clean
+	cd busybox && make clean
 	cd busybox && make CC=clang -j $(nproc)
 
 build-strace: pre
