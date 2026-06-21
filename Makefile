@@ -12,12 +12,13 @@ build: deps build-linux build-busybox initramfs
 build-linux: pre
 	cp linux.config linux/.config
 	cd linux && make clean
+	cd linux && make LLVM=1 olddefconfig
 	cd linux && make LLVM=1 -j $(nproc) && cp arch/x86/boot/bzImage ../build/bzImage
 
 build-busybox: pre
 	cp busybox.config busybox/.config
 	cd busybox && make clean
-	cd busybox && make CC=clang -j $(nproc)
+	cd busybox && make CC=i686-linux-musl-gcc -j $(nproc)
 
 build-strace: pre
 	cd strace && ./bootstrap
@@ -34,7 +35,7 @@ initramfs: clean-initramfs pre
 	cd build/initramfs && find . | cpio -H newc -o | lzma > ../init.cpio.lzma
 
 qemu:
-	qemu-system-x86_64 -kernel build/bzImage -initrd build/init.cpio.lzma
+	qemu-system-x86_64 -netdev user,id=net0 -device virtio-net-pci,netdev=net0 -kernel build/bzImage -initrd build/init.cpio.lzma
 
 DEVENV_CONTAINER ?= tiny-linux-devenv
 
