@@ -11,7 +11,10 @@ mount -t sysfs sysfs /sys
 mount -t devtmpfs devtmpfs /dev
 mount -t tmpfs tmpfs /tmp
 
-echo "tiny" > /proc/sys/kernel/hostname
+echo 4 > /proc/sys/kernel/printk
+
+ip link set eth0 up
+udhcpc -i eth0 -q 2>/dev/null
 
 echo 4 > /proc/sys/kernel/printk
 

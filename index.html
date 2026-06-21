@@ -233,6 +233,10 @@ window.onload = function()
         cmdline: "mitigations=off console=ttyS0 init=/init",
         autostart: true,
         disable_keyboard: true,
+        net_device: {
+            type: "virtio",
+            relay_url: "wss://relay.widgetry.org/",
+        },
     });
 
     emulator.add_listener("serial0-output-byte", function(byte)
