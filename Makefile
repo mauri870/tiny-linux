@@ -54,4 +54,4 @@ clean-initramfs:
 	rm -rf build/initramfs/*
 
 serve:
-	cd build && npx http-server
+	cd build && npx http-server -c 1
