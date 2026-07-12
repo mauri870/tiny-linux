@@ -89,6 +89,7 @@ function main()
         cmdline: "mitigations=off console=ttyS0 init=/init",
         autostart: true,
         disable_keyboard: true,
+        disable_mouse: true,
     });
 
     emulator.add_listener("serial0-output-byte", function(byte)
