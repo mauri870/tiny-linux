@@ -3,7 +3,7 @@
 	url = https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 [submodule "busybox"]
 	path = busybox
-	url = https://github.com/mirror/busybox
+	url = git://busybox.net/busybox.git
 [submodule "strace"]
 	path = strace
 	url = https://github.com/strace/strace.git
